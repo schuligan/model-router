@@ -1,5 +1,9 @@
 # model-router
 
+[![ci](https://github.com/schuligan/model-router/actions/workflows/ci.yml/badge.svg)](https://github.com/schuligan/model-router/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.11+-3776AB.svg)](https://www.python.org/)
+
 **Pick the right LLM for the task — instead of paying frontier prices for everything.**
 
 `model-router` is a small, config-driven tool that scores a task against a registry
