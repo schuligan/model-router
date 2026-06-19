@@ -1,0 +1,11 @@
+# Core runtime deps. The router is pure logic — no network, no API key needed.
+pyyaml>=6.0
+rich>=13.0
+pydantic>=2.0
+
+# Optional: only for the live "explain" mode (route --explain, not required to run).
+# anthropic>=0.40
+
+# Dev / test:
+# pytest>=8.0
+# ruff>=0.6
