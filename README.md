@@ -216,3 +216,7 @@ Personal project, built with Claude Code. AI-assisted. The model registry's
 cost/speed tiers are approximate and meant to be edited — see the note above.
 MIT licensed. No real API keys, employer data, or confidential information is used
 anywhere in this repo; all examples use generic placeholders.
+
+## Origin
+
+This is a **clean-room, generic version** of tooling I build and use locally for real operational and process work. The internal originals stay private; this public version is sanitized — synthetic data only, no proprietary logic — and generalized so anyone (including me) can reuse it via [Claude Code](https://claude.com/claude-code). Built and maintained AI-assisted.
