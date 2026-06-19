@@ -1,0 +1,130 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# model-router registry
+#
+# This is the ONLY file you normally need to edit. Add, remove, or re-tune
+# models here and the router picks them up automatically — no code changes.
+#
+# COST TIERS ARE APPROXIMATE AND WILL DRIFT. They are deliberately coarse
+# buckets, NOT dollar prices, because real prices change often. Treat them as
+# "edit me": when you care about exact spend, update `cost_tier` from the
+# provider's current pricing page. The router only ever compares tiers
+# relatively, so approximate buckets are enough to make a sensible choice.
+#
+# Field reference
+# ---------------
+#   id              : model identifier you pass to the provider/SDK
+#   provider        : anthropic | openai | meta | deepseek | zhipu | ...
+#   open_weights    : true if weights are downloadable / self-hostable
+#   context_window  : max input+output tokens the model accepts
+#   max_output      : max tokens the model can emit in one response (optional)
+#   capabilities    : tags the model is good at. Recognised tags:
+#                       reasoning, coding, vision, tool_use,
+#                       long_context, cheap_bulk
+#   cost_tier       : 1=cheapest ... 5=most expensive (RELATIVE, edit me)
+#   speed_tier      : 1=slowest ... 5=fastest (RELATIVE, edit me)
+#   notes           : free-text, shown in the rationale
+# ─────────────────────────────────────────────────────────────────────────────
+
+models:
+  # ── Anthropic Claude ──────────────────────────────────────────────────────
+  - id: claude-opus-4-8
+    provider: anthropic
+    open_weights: false
+    context_window: 1000000
+    max_output: 128000
+    capabilities: [reasoning, coding, vision, tool_use, long_context]
+    cost_tier: 5
+    speed_tier: 2
+    notes: "Deepest reasoning. Long-horizon agentic work, hard refactors, research."
+
+  - id: claude-sonnet-4-6
+    provider: anthropic
+    open_weights: false
+    context_window: 1000000
+    max_output: 64000
+    capabilities: [reasoning, coding, vision, tool_use, long_context]
+    cost_tier: 3
+    speed_tier: 3
+    notes: "Best speed/intelligence balance. Default for most production work."
+
+  - id: claude-haiku-4-5
+    provider: anthropic
+    open_weights: false
+    context_window: 200000
+    max_output: 64000
+    capabilities: [coding, vision, tool_use, cheap_bulk]
+    cost_tier: 2
+    speed_tier: 5
+    notes: "Fastest, cheapest Claude. Classification, bulk, latency-critical tasks."
+
+  # ── Open / self-hostable models ───────────────────────────────────────────
+  - id: glm-4.6
+    provider: zhipu
+    open_weights: true
+    context_window: 200000
+    max_output: 128000
+    capabilities: [reasoning, coding, tool_use, long_context]
+    cost_tier: 2
+    speed_tier: 3
+    notes: "Strong open coding/agentic model. Popular inside coding agents."
+
+  - id: glm-4.5-air
+    provider: zhipu
+    open_weights: true
+    context_window: 128000
+    max_output: 96000
+    capabilities: [coding, tool_use, cheap_bulk]
+    cost_tier: 1
+    speed_tier: 4
+    notes: "Smaller, cheaper GLM. Good cheap open default for routine coding."
+
+  - id: deepseek-v3
+    provider: deepseek
+    open_weights: true
+    context_window: 128000
+    max_output: 8000
+    capabilities: [coding, tool_use, cheap_bulk, long_context]
+    cost_tier: 1
+    speed_tier: 4
+    notes: "Very cheap open MoE. Great for high-volume coding/bulk generation."
+
+  - id: deepseek-r1
+    provider: deepseek
+    open_weights: true
+    context_window: 128000
+    max_output: 64000
+    capabilities: [reasoning, coding, long_context]
+    cost_tier: 2
+    speed_tier: 2
+    notes: "Open reasoning model. Cheaper alternative for deep-reasoning tasks."
+
+  - id: llama-3.3-70b
+    provider: meta
+    open_weights: true
+    context_window: 128000
+    max_output: 8000
+    capabilities: [coding, tool_use, cheap_bulk]
+    cost_tier: 1
+    speed_tier: 4
+    notes: "Widely available open weights. Solid general-purpose self-host option."
+
+  - id: llama-3.2-11b-vision
+    provider: meta
+    open_weights: true
+    context_window: 128000
+    max_output: 8000
+    capabilities: [vision, cheap_bulk]
+    cost_tier: 1
+    speed_tier: 5
+    notes: "Small open vision model. Cheap self-hostable image understanding."
+
+  # ── Other closed / GPT-class example ──────────────────────────────────────
+  - id: gpt-class-large
+    provider: openai
+    open_weights: false
+    context_window: 256000
+    max_output: 64000
+    capabilities: [reasoning, coding, vision, tool_use, long_context]
+    cost_tier: 4
+    speed_tier: 3
+    notes: "Generic GPT-class frontier entry. Edit id to your actual model."
